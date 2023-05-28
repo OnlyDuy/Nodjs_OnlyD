@@ -43,3 +43,5 @@ app.listen(port, () => {
 //11. Static file & SCSS: 
     // - Giúp dự án của chúng ta cấu hình được những file tĩnh (vd: file css, img)
     // - Cấu hình được CSS Preprocessors ( sd được những file như .scss)
+
+//12. Use Bootstrap
