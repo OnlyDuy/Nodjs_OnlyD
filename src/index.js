@@ -5,6 +5,8 @@ const handlebars = require('express-handlebars').engine;
 const app = express();
 const port = 3000;
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 // HTTP logger
 app.use(morgan('combined'));
 
@@ -37,3 +39,7 @@ app.listen(port, () => {
 
 //10. Template engine (handlebars): Giúp bạn có thể viết ra các file chứa html ở những nới khác
     // gọn gàn hơn đạt được hiệu quả khi code HTML thủ công
+
+//11. Static file & SCSS: 
+    // - Giúp dự án của chúng ta cấu hình được những file tĩnh (vd: file css, img)
+    // - Cấu hình được CSS Preprocessors ( sd được những file như .scss)
