@@ -1,5 +1,4 @@
 # File này dùng để loại bỏ những file của git
 
 src/public/css/
-
 node_modules/
