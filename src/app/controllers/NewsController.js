@@ -1,7 +1,7 @@
 
 class NewsController {
     // [GET] /news
-    index(req, res){
+    news(req, res){
         res.render('news');
     }
 
@@ -11,4 +11,5 @@ class NewsController {
     }
 }
 
+// Khởi tạo 1 News Controller và export ra ngoài (để require vào trang news)
 module.exports = new NewsController;

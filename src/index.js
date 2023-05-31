@@ -5,6 +5,7 @@ const handlebars = require('express-handlebars').engine;
 const app = express();
 const port = 3000;
 
+// import từ file routes/index
 const route = require('./routes/index').route;
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -26,9 +27,10 @@ app.engine('hbs', handlebars({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
 
-// Route init
+// Route init: chạy file routes được import bên trên và lấy ra các app được cấu hình trong routes/index
 route(app);
 
+// Việc Start lên 1 web server và lắng nghe port: 3000
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 });
