@@ -8,6 +8,11 @@ const port = 3000;
 // import từ file routes/index
 const route = require('./routes/index').route;
 
+const db = require('./config/db');
+
+// Connect to DB
+db.connect();
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware
