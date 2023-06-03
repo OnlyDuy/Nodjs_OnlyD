@@ -34,14 +34,14 @@ app.engine(
     }),
 );
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources', 'views'));
 
 // Route init: chạy file routes được import bên trên và lấy ra các app được cấu hình trong routes/index
 route(app);
 
 // Việc Start lên 1 web server và lắng nghe port: 3000
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`App listening at http://localhost:${port}`);
 });
 
 // Nodemon để lăng nghe sự thay đổi của những file trong source code để reaload lại mà không cần Ctrl C
