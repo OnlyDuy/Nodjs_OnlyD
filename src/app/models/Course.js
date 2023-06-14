@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-const slug = require('mongoose-slug-generator');
+const slug = require('mongoose-slug-updater');
 
 mongoose.plugin(slug);
 
@@ -11,7 +11,7 @@ const Course = new Schema({
     description: { type: 'string', maxLength: 600},
     image: { type: 'string'},
     videoId: { type: 'string', require: true},
-    slug: { type: String, slug: 'name', unique: true},
+    slug: { type: String, slug: 'name'},
 }, {
     timestamps: true,
 });
