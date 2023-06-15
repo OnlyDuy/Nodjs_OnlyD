@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars').engine;
+const methodOverride = require('method-override')
 const app = express();
 const port = 3000;
 
@@ -26,11 +27,17 @@ app.use(express.json());
 // HTTP logger
 app.use(morgan('combined'));
 
+// override with the X-HTTP-Method-Override header in the request
+app.use(methodOverride('_method'));
+
 // Template engine
 app.engine(
     'hbs',
     handlebars({
         extname: '.hbs',
+        helpers: {
+            sum: (a, b) => a + b,
+        }
     }),
 );
 app.set('view engine', 'hbs');
@@ -78,3 +85,12 @@ app.listen(port, () => {
 // thì prettier sẽ chạy. Khi đó đẩy code lên git thì sẽ luôn tuân theo 1 format được cấu hình sẵn
 // lint-staged: giúp chạy một command trên những file được add vào git
 // husky: cung cấp những Git hooks
+
+//30. [CRUD] Update course: 
+// Method-Override: Cho phép bạn sử dụng các động từ HTTP như PUT hoặc DELETE ở những nơi mà máy khách không hỗ trợ.
+
+
+// GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD
+// GET: Gửi yêu cầu lên Server, yêu cầu Server gửi dữu liệu về Client
+// POST: Gửi yêu cầu lên Server, yêu cầu Server lưu lại, tạo mới dữu liệu
+// PUT, PATCH: Chỉnh sửa dữ liệu
