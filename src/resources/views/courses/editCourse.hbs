@@ -12,6 +12,15 @@
                 {{course.description}}
             </textarea>
         </div>
+        <div class=" mb-3">
+            <label class="form-label" for="level">Trình độ</label>
+            <select class="custom-select form-control" id="level" name="level">
+                <option selected>{{course.level}}</option>
+                <option value="Cơ bản">Cơ bản</option>
+                <option value="Trung bình">Trung bình</option>
+                <option value="Nâng cao">Nâng cao</option>    
+            </select>
+        </div>
         <div class="mb-3">
             <label for="videoId" class="form-label">Video</label>
             <input type="text" class="form-control" value="{{course.videoId}}" id="videoId" name="videoId">

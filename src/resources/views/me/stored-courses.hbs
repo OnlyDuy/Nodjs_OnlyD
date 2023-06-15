@@ -5,9 +5,9 @@
             <tr>
                 <th scope="col">STT</th>
                 <th scope="col">Tên khóa học</th>
+                <th scope="col">Trình độ</th>
                 <th scope="col">VideoId</th>
                 <th scope="col">Thòi gian tạo</th>
-                <th scope="col">Thòi gian cập nhật</th>
                 <th scope="col">Thao tác</th>
             </tr>
         </thead>
@@ -16,9 +16,10 @@
             <tr>
                 <th scope="row">{{sum @index 1}}</th>
                 <td>{{this.name}}</td>
+                <td>{{this.level}}</td>
                 <td>{{this.videoId}}</td>
                 <td>{{this.createdAt}}</td>
-                <td>{{this.updatedAt}}</td>
+            
                 <td>
                     <a href="/courses/editCourse/{{this._id}}" class="btn btn-primary mr-2"><i class="fas fa-edit"></i></a>
                     <a href="" class="btn btn-danger mr-2"><i class="fas fa-trash"></i></a>
