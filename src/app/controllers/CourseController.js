@@ -50,6 +50,13 @@ class CourseController {
             .catch(err => next(err));
     }
 
+    // [DELETE] /courses/:_id
+    deleteCourse(req, res, next) {
+        Course.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(err => next(err));
+    }
+
 }   
 
 module.exports = new CourseController();
