@@ -89,8 +89,11 @@ app.listen(port, () => {
 //30. [CRUD] Update course: 
 // Method-Override: Cho phép bạn sử dụng các động từ HTTP như PUT hoặc DELETE ở những nơi mà máy khách không hỗ trợ.
 
-
 // GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD
 // GET: Gửi yêu cầu lên Server, yêu cầu Server gửi dữu liệu về Client
 // POST: Gửi yêu cầu lên Server, yêu cầu Server lưu lại, tạo mới dữu liệu
 // PUT, PATCH: Chỉnh sửa dữ liệu
+
+
+//32. Soft delete?
+// Xóa mềm: không xóa thật, là khi xáo thì trên website sẽ không hiện nữa nhưng trong db thì vẫn còn
