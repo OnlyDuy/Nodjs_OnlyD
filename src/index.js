@@ -96,4 +96,4 @@ app.listen(port, () => {
 
 
 //32. Soft delete?
-// Xóa mềm: không xóa thật, là khi xáo thì trên website sẽ không hiện nữa nhưng trong db thì vẫn còn
+// Xóa mềm: không xóa thật, là khi xóa thì trên website sẽ không hiện nữa nhưng trong db thì vẫn còn
