@@ -6,11 +6,11 @@ class MeController {
     storedCourses(req, res, next) {
 
         Promise.all([Course.find({}), Course.countDocumentsDeleted()])
-            .then(([courses, deletedCount]) => 
+            .then(([courses, deletedCount]) =>
                 res.render('me/stored-courses', {
                     deletedCount,
                     // cần làm như này vì đây là vấn đề của handlebars
-                    courses: mutipleMongooseToObject(courses)
+                    courses: mutipleMongooseToObject(courses),
                 })
             )
             .catch(err => next(err));
@@ -38,10 +38,10 @@ class MeController {
 
     // [GET] /trash/courses
     trashCourses(req, res, next) {
-        Course.findDeleted({})
+        Course.findDeleted({ deleted: true })
             .then((courses) =>
                 res.render('me/trash-courses', {
-                    courses: mutipleMongooseToObject(courses),
+                    courses: mutipleMongooseToObject(courses.filter(course => course.deleted)),
                 }),
             )
             .catch(next);
