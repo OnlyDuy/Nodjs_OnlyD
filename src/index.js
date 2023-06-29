@@ -2,7 +2,9 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars').engine;
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const SortMiddleware = require('./app/middlewares/SortMiddleware');
+
 const app = express();
 const port = 3000;
 
@@ -30,6 +32,26 @@ app.use(morgan('combined'));
 // override with the X-HTTP-Method-Override header in the request
 app.use(methodOverride('_method'));
 
+// Middleware
+app.get('/middleware', 
+    function(req, res, next) {
+        if (['vethuong', 'vevip'].includes(req.query.ve)) {
+            req.face = 'Gach Gach Gach Gach Gach Gach Gach Gach Gach'
+            return next();
+        }
+        res.status(403).json({message: 'Access denied'});
+    },
+    function(req, res, next) {
+        res.json({
+            message: 'Successfully middleware',
+            face: req.face
+        });
+    }
+);
+
+// Custom Middleware
+app.use(SortMiddleware);
+
 // Template engine
 app.engine(
     'hbs',
@@ -37,6 +59,28 @@ app.engine(
         extname: '.hbs',
         helpers: {
             sum: (a, b) => a + b,
+            // Tạo helper để render sort
+            sortable: (field, sort) => {
+                const sortType = field === sort.column ? sort.type : 'default'
+
+                const icons = {
+                    default: 'fa-solid fa-sort',
+                    asc: 'fa-solid fa-arrow-up-short-wide',
+                    desc: 'fa-solid fa-arrow-down-short-wide'
+                }   
+
+                const types = {
+                    default: 'desc',
+                    asc: 'desc',
+                    desc: 'asc'
+                }
+
+                const icon = icons[sortType];
+
+                const type = types[sortType];
+
+                return `<a href="?_sort&column=${field}&type=${type}"><i class="${icon}"></i></a>`
+            }
         }
     }),
 );

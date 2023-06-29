@@ -25,10 +25,16 @@
             <tr>
                 <td scope="col">#</td>
                 <th scope="col">STT</th>
-                <th scope="col">Tên khóa học</th>
-                <th scope="col">Trình độ</th>
+                <th scope="col">Tên khóa học
+                    {{{sortable 'name' _sort}}}
+                </th>
+                <th scope="col">Trình độ
+                    {{{sortable 'level' _sort}}}
+                </th>
                 <th scope="col">VideoId</th>
-                <th scope="col">Thòi gian tạo</th>
+                <th scope="col">Thòi gian tạo
+                    {{{sortable 'createdAt' _sort}}}
+                </th>
                 <th scope="col">Thao tác</th>
             </tr>
         </thead>
@@ -55,7 +61,7 @@
             </tr>
             {{else}}
             <tr>
-                <td colspan="6" class="text-center">
+                <td colspan="7" class="text-center">
                     Bạn chưa đăng khóa học nào.
                     <a href="/courses/createCourse">Đăng khóa học</a>
                 </td>
@@ -112,12 +118,13 @@
      document.addEventListener('DOMContentLoaded', function() {
         var courseId;
         var deleteForm = document.forms['delete-course-form'];
-        var containerForm = document.forms['container-form'];
+        //var containerForm = document.forms['container-form'];
+        var containerForm = $('form[name = "container-form"]')
         var btnDeleteCourse = document.getElementById('btn-delete-course');
         var checkboxAll = $('#checkbox-all');
         var courseItemCheckbox = $('input[name="courseIds[]"]');
         var btnCheckAllSubmit = $('#btn-checkAll-submit');
-
+        
         // Chọn nút xóa để lấy dữ liệu 
         $('#delete-course-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
@@ -149,10 +156,13 @@
             renderCheckAllSubmitBtn();
         })
 
-        // Khi click mới submit (phấn này hơi thừa)
-        btnCheckAllSubmit.on('submit', function(e) {
-            var isSubmitable = !$(this).hasClass('disabled');
+        // Khi click mới submit (phấn này hơi thừa) vì bootstrap 5 đã cập nhật
+        containerForm.on('submit', function(e) {
+            // nếu không có disable thì là true: tức là được gửi
+            // có disable thì đặt thành false: tức là không được gửi
+            var isSubmitable = !btnCheckAllSubmit.hasClass('disabled');
             if (!isSubmitable) {
+                // nếu là false: thì loại bỏ hành vi mặc định của form
                 e.preventDefault();
             }
         })
