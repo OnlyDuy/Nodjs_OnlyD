@@ -18,13 +18,22 @@
                 <option selected>{{course.level}}</option>
                 <option value="Cơ bản">Cơ bản</option>
                 <option value="Trung bình">Trung bình</option>
-                <option value="Nâng cao">Nâng cao</option>    
+                <option value="Nâng cao">Nâng cao</option>
             </select>
         </div>
         <div class="mb-3">
             <label for="videoId" class="form-label">Video</label>
             <input type="text" class="form-control" value="{{course.videoId}}" id="videoId" name="videoId">
         </div>
-        <button type="submit" class="btn btn-primary">Cập nhật</button>
+    
+        <div class="card-footer d-flex">
+            <div id="btn_comback">
+                <a href="/me/stored/courses" class="btn btn-secondary">Quay lại</a>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
+            </div>
+        </div>
     </form>
 </div>

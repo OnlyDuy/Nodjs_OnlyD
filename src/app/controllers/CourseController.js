@@ -72,12 +72,31 @@ class CourseController {
             .catch(err => next(err));
     }
 
-    // [POST] /courses/handle-form-actions
-    handleFormActions(req, res, next) {
+    // [POST] /courses/handle-form-actions-delete
+    handleFormActionsDelete(req, res, next) {
         switch (req.body.action) {
             // Xóa tất cả những course có Id nằm trong list {$in: req.body.courseIds}
             case 'delete':
                 Course.delete({ _id: {$in: req.body.courseIds} })
+                    .then(() => res.redirect('back'))
+                    .catch(err => next(err));
+                break;
+            default:
+                res.json({message: 'Invalid action'});
+        }
+    }
+
+     // [POST] /courses/handle-form-actions
+     handleFormActions(req, res, next) {
+        switch (req.body.action) {
+            // Xóa tất cả những course có Id nằm trong list {$in: req.body.courseIds}
+            case 'delete':
+                Course.delete({ _id: {$in: req.body.courseIds} })
+                    .then(() => res.redirect('back'))
+                    .catch(err => next(err));
+                break;
+            case 'restore':
+                Course.restore({ _id: {$in: req.body.courseIds} })
                     .then(() => res.redirect('back'))
                     .catch(err => next(err));
                 break;
